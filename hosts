@@ -1,0 +1,13 @@
+
+[bootstrap]
+54.213.215.208  ansible_user=centos
+
+
+[masters]
+54.202.0.219  ansible_user=centos
+
+[agents]
+54.191.221.96  ansible_user=centos
+54.191.90.194 ansible_user=centos
+54.245.152.0 ansible_user=centos
+
