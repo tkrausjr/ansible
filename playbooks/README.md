@@ -2,13 +2,13 @@
 
 ## update-hosts.yml
 This playbook will update /etc/hosts file on all the target machines using the *hosts-file.j2* in  
-*templates/* folder.
+the *templates/* folder.
 
 *$ ansible-playbook ./playbooks/update-hosts.yml -i ./inventory/nested-esxi-hosts*
 
 
  
-### future-playbook.yml
+## future-playbook.yml
 1. *$ vi ansible.cfg*    
     ``` bash
     sample
