@@ -1,10 +1,12 @@
 # Updated by Ansible 2.4 Tkraus
 
-127.0.0.1   localhost   {{ ansible_hostname }}
+127.0.0.1   localhost   {{ inventory_hostname }} {{ ansible_hostname }}
 
-10.173.13.159	master1.k8slocal.net
-10.173.13.160	master2.k8slocal.net
-10.173.13.161	master3.k8slocal.net
-10.173.13.162	node1.k8slocal.net
-10.173.13.163	node2.k8slocal.net
+10.173.13.159	master1.k8slocal.net master1
+10.173.13.160	master2.k8slocal.net master2
+10.173.13.161	master3.k8slocal.net master3
+10.173.13.162	node1.k8slocal.net node1
+10.173.13.163	node2.k8slocal.net node2
+10.173.13.31    ubuntu-nfs.k8slocal.net ubuntu-nfs
+
 

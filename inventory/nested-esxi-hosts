@@ -24,7 +24,10 @@ master3.k8slocal.net
 node1.k8slocal.net
 node2.k8slocal.net
 
+[infrastructure]
+ubuntu-nfs.k8slocal.net
 
 [kube-cluster:children]
 kube-node
 kube-master
+infrastructure

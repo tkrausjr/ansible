@@ -1,0 +1,27 @@
+---
+# This playbook will prepare networking of the Linux Nodes to get ready for Kubernetes Installation
+# 1. Set hostname
+# 2. Set /etc/hosts for cluster name resolution
+# 3. turn on IPV4 Routing
+
+- hosts: all
+
+  tasks:
+      - name: Configure Hostname from inventory_hostname
+        hostname: name={{inventory_hostname}}
+
+      - name: Set /etc/hosts from template
+        action: template src=hosts-file.j2 dest=/etc/hosts
+
+      - name: Test inventory_hostname variable
+        debug: var=inventory_hostname
+
+      - name: Test ansible_hostname variable
+        debug: var=ansible_hostname
+
+      - sysctl:
+          name: net.ipv4.ip_forward
+          value: 1
+          sysctl_set: yes
+          state: present
+          reload: yes
