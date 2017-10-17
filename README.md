@@ -6,10 +6,11 @@
 Ansible host - OSX
 1. *$ pip install ansible*
 1. *$ vi ansible.cfg*    (Either in /etc/ansible/ or in current directory you are running from)
-    [defaults]
+    ```[defaults]
     host_key_checking = False
     private_key_file = /Users/someone/.ssh/id_rsa
     remote_user = root
+    ```
 1. *$ ssh-keygen -t rsa*
   Your identification has been saved in /Users/someone/.ssh/id_rsa.
   Your public key has been saved in /Users/someone/.ssh/id_rsa.pub.
