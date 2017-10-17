@@ -12,6 +12,7 @@ Ansible host - OSX
     remote_user = root
     ```
 1. *$ ssh-keygen -t rsa*
+
 ```Your identification has been saved in /Users/someone/.ssh/id_rsa.
 Your public key has been saved in /Users/someone/.ssh/id_rsa.pub.
 ```
