@@ -13,7 +13,7 @@ Ansible host - OSX
     ```
 1. *$ ssh-keygen -t rsa*
 
-```Your identification has been saved in /Users/someone/.ssh/id_rsa.
+``` Your identification has been saved in /Users/someone/.ssh/id_rsa.
 Your public key has been saved in /Users/someone/.ssh/id_rsa.pub.
 ```
 For Certificate based Auth you will need to copy your public key to all target hosts.
