@@ -3,8 +3,8 @@
 ## update-hosts.yml
 This playbook will prepare Ubuntu VMs for K8s install. It will:
 - update hostname to the Ansible Inventory name.
-- update /etc/hosts for DNS on all cluster nodes.
-- enable routing fon all the target machines using the *hosts-file.j2* in the *templates/* folder to get ready for k8s.
+- update /etc/hosts for DNS using the *hosts-file.j2* in the *templates/* folder.
+- enable routing.
 
 #### Run playbook
 *$ ansible-playbook ./playbooks/update-hosts.yml -i ./inventory/nested-esxi-hosts*
