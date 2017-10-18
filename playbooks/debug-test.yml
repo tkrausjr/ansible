@@ -1,0 +1,31 @@
+# This playbook will setup kubeadm on Linux hosts for Kubernetes installationls
+# 1. 
+# 2. 
+# 3. 
+
+
+- hosts: kube-master
+  
+  tasks: 
+      - name: Kubeadm Init Master with Calico CIDR
+        shell: ls -ahl | tail -n1
+        register: kubeadmoutput
+      
+      - name: Show variable contents
+        debug:
+            msg: "kubeadmoutput stdout contents: {{ kubeadmoutput.stdout }}"
+
+      - name: Make variables persistent across hosts and host groups using facts
+        set_fact:
+          kubejoin: "{{ kubeadmoutput.stdout }}"
+
+- hosts: kube-node
+  
+  tasks: 
+      
+      - name: Show Variable contents with debug 
+        debug:
+          msg: "Kubeadm join command is {{ hostvars[groups['kube-master'][0]]['kubeadmoutput']['stdout'] }}"
+
+      - name: Run kubeadm join from nodes
+        shell: {{ hostvars[groups['kube-master'][0]]['kubeadmoutput']['stdout'] }}
