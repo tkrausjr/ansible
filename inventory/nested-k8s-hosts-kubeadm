@@ -12,13 +12,9 @@
 
 [kube-master]
 master1.k8slocal.net
-master2.k8slocal.net
-master3.k8slocal.net
 
 [etcd]
 master1.k8slocal.net
-master2.k8slocal.net
-master3.k8slocal.net
 
 [kube-node]
 node1.k8slocal.net
@@ -30,4 +26,3 @@ ubuntu-nfs.k8slocal.net
 [kube-cluster:children]
 kube-node
 kube-master
-infrastructure
