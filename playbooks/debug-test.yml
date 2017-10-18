@@ -11,13 +11,16 @@
         shell: ls -ahl | tail -n1
         register: kubeadmoutput
       
-      - name: Show variable contents
-        debug:
-            msg: "kubeadmoutput stdout contents: {{ kubeadmoutput.stdout }}"
-
       - name: Make variables persistent across hosts and host groups using facts
         set_fact:
           kubejoin: "{{ kubeadmoutput.stdout }}"
+
+      - name: Copy k8s-admin.conf to local machine
+        fetch: 
+          src: /etc/kubernetes/admin.conf
+          dest: ~/admin.conf
+          flat: yes
+
 
 - hosts: kube-node
   
@@ -27,5 +30,19 @@
         debug:
           msg: "Kubeadm join command is {{ hostvars[groups['kube-master'][0]]['kubeadmoutput']['stdout'] }}"
 
-      - name: Run kubeadm join from nodes
-        shell: {{ hostvars[groups['kube-master'][0]]['kubeadmoutput']['stdout'] }}
+      - name: Show variable contents
+        debug:
+          msg: "{{ hostvars[groups['kube-master'][0]]['kubeadmoutput']['stdout'] }}"
+
+- hosts: kube-client
+  
+  tasks:
+
+      - name: Test access to the cluster using kubectl
+        shell: kubectl --kubeconfig ~/admin.conf get nodes
+        register: kubectl-getnodes
+      
+      - name: Show getnodes ouput from local group
+        debug:
+          msg: "Cluster has following nodes: {{kubectl-getnodes.stdout }}"
+

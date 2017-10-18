@@ -23,6 +23,9 @@ node2.k8slocal.net
 [infrastructure]
 ubuntu-nfs.k8slocal.net
 
+[kube-client]
+localhost ansible_connection=local
+
 [kube-cluster:children]
 kube-node
 kube-master

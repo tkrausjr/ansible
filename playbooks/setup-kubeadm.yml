@@ -52,6 +52,12 @@
       - name: kubectl setup Calico
         shell: kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
 
+      - name: Copy k8s-admin.conf to local machine
+        fetch: 
+          src: /etc/kubernetes/admin.conf
+          dest: ~/k8s-admin.conf
+          flat: yes
+
 - hosts: kube-node
   
   tasks: 
@@ -62,3 +68,20 @@
       
       - name: Run kubeadm join from nodes
         shell: "{{ hostvars[groups['kube-master'][0]]['kubeadmoutput']['stdout'] }}"
+
+- hosts: kube-client
+  
+  tasks:
+
+      - name: Test access to the cluster using kubectl
+        shell: kubectl --kubeconfig ~/k8s-admin.conf get nodes
+        register: clusternodes
+      
+      - name: Show getnodes ouput from local group
+        debug:
+          msg: "Cluster nodes are online: {{ clusternodes.stdout_lines }}"
+
+      - name: Provide instructions for accessing the cluster
+        debug:
+          msg: "To use this cluster specify the '--kubeconfig ~/k8s-admin.conf' with kubectl"
+          msg: "kubectl --kubeconfig ~/k8s-admin.conf get nodes"
