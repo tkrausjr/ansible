@@ -7,7 +7,7 @@ This playbook will prepare Ubuntu VMs for K8s install. It will:
 - enable routing.
 
 #### Run playbook
-*$ ansible-playbook ./playbooks/update-hosts.yml -i ./inventory/nested-esxi-hosts*
+*$ ansible-playbook ./playbooks/update-hosts.yml -i ./inventory/nested-k8s-hosts-kubeadm*
 
  
 ## setup-kubeadm.yml
@@ -22,7 +22,7 @@ This playbook will:
 - Note: Tested on Ubuntu 16.04 and assumes update-hosts.yml was used to prepare hosts.
 
 #### Run playbook
-*$ ansible-playbook ./playbooks/setup-kubeadm.yml -i ./inventory/nested-esxi-hosts*
+*$ ansible-playbook ./playbooks/setup-kubeadm.yml -i ./inventory/nested-k8s-hosts-kubeadm*
 
 *$ vi ansible.cfg*    
     ``` bash
