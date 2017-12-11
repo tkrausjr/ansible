@@ -30,7 +30,9 @@ Usually taget hosts will need Python 2.x such as 2.7. On Ubunutu 16.04 this was 
 #### Test the setup
   *$ ansible kube-cluster -i ./inventory/nested-esxi-hosts -m ping*
 
-
+#### Run a Playbook
+  *$ ansible-playbook ./playbooks/setup-kubeadm.yml -i ./inventory/nested-k8s-hosts-kubeadm*
+  
 ## Built With
 + List of technology/tools you used to develop the project
 ## Resources
